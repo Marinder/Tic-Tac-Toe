@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
-import javafx.scene.layout.GridPane;
 import javafx.stage.StageStyle;
 import java.util.Optional;
 import java.util.Random;
