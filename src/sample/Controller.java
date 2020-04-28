@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
-import javafx.scene.layout.GridPane;
 import javafx.stage.StageStyle;
 import java.util.Optional;
 import java.util.Random;
@@ -26,13 +25,13 @@ public class Controller {
     private Button exitButton;
 
     @FXML
-    Button gridPaneButton1;
+    private Button gridPaneButton1;
 
     @FXML
-    Button gridPaneButton2;
+    private Button gridPaneButton2;
 
     @FXML
-    Button gridPaneButton3;
+    private Button gridPaneButton3;
 
     @FXML
     private Button gridPaneButton4;
@@ -94,7 +93,7 @@ public class Controller {
     }
 
     public boolean gameEnd() {
-        if ("" != gridPaneButton1.getText() && gridPaneButton1.getText().equals(gridPaneButton2.getText())
+        if (!"".equals(gridPaneButton1.getText()) && gridPaneButton1.getText().equals(gridPaneButton2.getText())
                 && gridPaneButton2.getText().equals(gridPaneButton3.getText())) {
             gridPaneButton1.setStyle("-fx-background-color: #52c6ca");
             gridPaneButton2.setStyle("-fx-background-color: #52c6ca");
@@ -103,7 +102,7 @@ public class Controller {
             return true;
         }
 
-        if ("" != gridPaneButton4.getText() && gridPaneButton4.getText().equals(gridPaneButton5.getText())
+        if (!"".equals(gridPaneButton4.getText()) && gridPaneButton4.getText().equals(gridPaneButton5.getText())
                 && gridPaneButton5.getText().equals(gridPaneButton6.getText())) {
             gridPaneButton4.setStyle("-fx-background-color: #52c6ca");
             gridPaneButton5.setStyle("-fx-background-color: #52c6ca");
@@ -112,7 +111,7 @@ public class Controller {
             return true;
         }
 
-        if ("" != gridPaneButton7.getText() && gridPaneButton7.getText().equals(gridPaneButton8.getText())
+        if (!"".equals(gridPaneButton7.getText()) && gridPaneButton7.getText().equals(gridPaneButton8.getText())
                 && gridPaneButton8.getText().equals(gridPaneButton9.getText())) {
             gridPaneButton7.setStyle("-fx-background-color: #52c6ca");
             gridPaneButton8.setStyle("-fx-background-color: #52c6ca");
@@ -121,7 +120,7 @@ public class Controller {
             return true;
         }
 
-        if ("" != gridPaneButton1.getText() && gridPaneButton1.getText().equals(gridPaneButton4.getText())
+        if (!"".equals(gridPaneButton1.getText()) && gridPaneButton1.getText().equals(gridPaneButton4.getText())
                 && gridPaneButton4.getText().equals(gridPaneButton7.getText())) {
             gridPaneButton1.setStyle("-fx-background-color: #52c6ca");
             gridPaneButton4.setStyle("-fx-background-color: #52c6ca");
@@ -131,7 +130,7 @@ public class Controller {
         }
 
 
-        if ("" != gridPaneButton2.getText() && gridPaneButton2.getText().equals(gridPaneButton5.getText())
+        if (!"".equals(gridPaneButton2.getText()) && gridPaneButton2.getText().equals(gridPaneButton5.getText())
                 && gridPaneButton5.getText().equals(gridPaneButton8.getText())) {
             gridPaneButton2.setStyle("-fx-background-color: #52c6ca");
             gridPaneButton5.setStyle("-fx-background-color: #52c6ca");
@@ -140,7 +139,7 @@ public class Controller {
             return true;
         }
 
-        if ("" != gridPaneButton3.getText() && gridPaneButton3.getText().equals(gridPaneButton6.getText())
+        if (!"".equals(gridPaneButton3.getText()) && gridPaneButton3.getText().equals(gridPaneButton6.getText())
                 && gridPaneButton6.getText().equals(gridPaneButton9.getText())) {
             gridPaneButton3.setStyle("-fx-background-color: #52c6ca");
             gridPaneButton6.setStyle("-fx-background-color: #52c6ca");
@@ -149,7 +148,7 @@ public class Controller {
             return true;
         }
 
-        if ("" != gridPaneButton1.getText() && gridPaneButton1.getText().equals(gridPaneButton5.getText())
+        if (!"".equals(gridPaneButton1.getText()) && gridPaneButton1.getText().equals(gridPaneButton5.getText())
                 && gridPaneButton5.getText().equals(gridPaneButton9.getText())) {
             gridPaneButton1.setStyle("-fx-background-color: #52c6ca");
             gridPaneButton5.setStyle("-fx-background-color: #52c6ca");
@@ -158,7 +157,7 @@ public class Controller {
             return true;
         }
 
-        if ("" != gridPaneButton3.getText() && gridPaneButton3.getText().equals(gridPaneButton5.getText())
+        if (!"".equals(gridPaneButton3.getText()) && gridPaneButton3.getText().equals(gridPaneButton5.getText())
                 && gridPaneButton5.getText().equals(gridPaneButton7.getText())) {
             gridPaneButton3.setStyle("-fx-background-color: #52c6ca");
             gridPaneButton5.setStyle("-fx-background-color: #52c6ca");
@@ -167,11 +166,11 @@ public class Controller {
             return true;
         }
 
-        if ("" != gridPaneButton1.getText() && "" != gridPaneButton2.getText() &&  "" != gridPaneButton3.getText()
-                && "" != gridPaneButton4.getText() && "" != gridPaneButton5.getText()
-                && "" != gridPaneButton6.getText() && "" != gridPaneButton7.getText()
-                && "" != gridPaneButton8.getText() && "" != gridPaneButton9.getText()) {
-
+        if (!"".equals(gridPaneButton1.getText())
+                && !"".equals(gridPaneButton2.getText()) && !"".equals(gridPaneButton3.getText())
+                && !"".equals(gridPaneButton4.getText()) && !"".equals(gridPaneButton5.getText())
+                && !"".equals(gridPaneButton6.getText()) && !"".equals(gridPaneButton7.getText())
+                && !"".equals(gridPaneButton8.getText()) && !"".equals(gridPaneButton9.getText())) {
             move = false;
             return true;
         }
@@ -192,6 +191,17 @@ public class Controller {
         arrayButtons[8] = gridPaneButton9;
     }
 
+    public void computerMove() {
+        boolean draw = false;
+
+        while (!draw) {
+            int rand = generator.nextInt(arrayButtons.length);
+            if ("" == arrayButtons[rand].getText()) {
+                arrayButtons[rand].setText("O");
+                draw = true;
+            }
+        }
+    }
 
 
     public void buttonHandle(ActionEvent event) {
@@ -202,22 +212,18 @@ public class Controller {
                     if ("" == arrayButtons[i].getText() && arrayButtons[i] == event.getTarget()) {
                         arrayButtons[i].setText("X");
                         gameTurn = true;
+                        gameEnd();
                     }
                 }
-                if (gameTurn && move) {
-                    boolean draw = false;
 
-                    while (!draw) {
-                        int rand = generator.nextInt(arrayButtons.length);
-                        if ("" == arrayButtons[rand].getText()) {
-                            arrayButtons[rand].setText("O");
-                            draw = true;
-                        }
-                    }
+                if (gameTurn && move) {
+                    computerMove();
                     gameTurn = false;
+                    gameEnd();
                 }
-                gameEnd();
+
             }
+
         }
     }
 }
